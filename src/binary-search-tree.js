@@ -39,14 +39,31 @@ class BinarySearchTree {
     }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    return this.hasSubTree(this._root, data);
+    // throw new NotImplementedError('Not implemented');
+    // // remove line with error and write your code here
+  }
+
+  hasSubTree(currentSubTree, data) {
+    if(!currentSubTree) {
+      return false;
+    } else {
+      if(currentSubTree.data === data){
+        return true;
+      } else {
+        if(data < currentSubTree.data){
+          return this.hasSubTree(currentSubTree.left, data);
+        } else {
+          return this.hasSubTree(currentSubTree.right, data);
+        }
+      }
+    }
   }
 
   find(/* data */) {
     throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    // // remove line with error and write your code here
   }
 
   remove(/* data */) {
