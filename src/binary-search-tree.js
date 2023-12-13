@@ -80,8 +80,7 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.removeNode(this._root, data);
   }
 
   removeNode(currentSubTree, data) {
@@ -91,22 +90,24 @@ class BinarySearchTree {
       if(currentSubTree.data === data){
         if(!currentSubTree.left && !currentSubTree.right) {
           currentSubTree = null;
-          return currentSubTree;
         } else if(!currentSubTree.left) {
           currentSubTree = currentSubTree.right;
         } else if(!currentSubTree.right) {
           currentSubTree = currentSubTree.left;
         } else {
-          currentSubTree = this.minNode
+          let minRightNode =  this.minNode(currentSubTree.right);
+          currentSubTree.data = minRightNode.data;
+          currentSubTree.right = this.removeNode(currentSubTree.right, minRightNode.data);
         }
       } else {
         if(data < currentSubTree.data){
-          return this.removeNode(currentSubTree.left, data);
+          currentSubTree.left = this.removeNode(currentSubTree.left, data);
         } else {
-          return this.removeNode(currentSubTree.right, data);
+          currentSubTree.right = this.removeNode(currentSubTree.right, data);
         }
       }
     }
+    return currentSubTree;
   }
 
   min() {
