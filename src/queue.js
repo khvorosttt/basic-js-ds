@@ -42,8 +42,16 @@ class Queue {
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if(!this.top){
+      return null;
+    }
+    let topElem = this.top.value;
+    if(this.top.next) {
+      this.top = this.top.next;
+    } else {
+      this.top = null;
+    }
+    return topElem; 
   }
 }
 
