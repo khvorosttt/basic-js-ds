@@ -24,9 +24,21 @@ class Queue {
     // remove line with error and write your code here
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  enqueue(value) {
+    if(!this.top){
+      this.top = new ListNode(value);
+      return this.top;
+    }
+    return this.enqueueValue(this.top, value);
+  }
+
+  enqueueValue(listNode, value) {
+    if(!listNode.next) {
+      listNode.next = new ListNode(value);
+    } else {
+      this.enqueueValue(listNode.next, value);
+    }
+    return listNode;
   }
 
   dequeue() {
