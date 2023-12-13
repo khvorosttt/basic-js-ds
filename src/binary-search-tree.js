@@ -41,8 +41,6 @@ class BinarySearchTree {
 
   has(data) {
     return this.hasSubTree(this._root, data);
-    // throw new NotImplementedError('Not implemented');
-    // // remove line with error and write your code here
   }
 
   hasSubTree(currentSubTree, data) {
@@ -61,9 +59,24 @@ class BinarySearchTree {
     }
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // // remove line with error and write your code here
+  find(data) {
+    return this.findSubTree(this._root, data);
+  }
+
+  findSubTree(currentSubTree, data) {
+    if(currentSubTree === null) {
+      return null;
+    } else {
+      if(currentSubTree.data === data){
+        return currentSubTree;
+      } else {
+        if(data < currentSubTree.data){
+          return this.findSubTree(currentSubTree.left, data);
+        } else {
+          return this.findSubTree(currentSubTree.right, data);
+        }
+      }
+    }
   }
 
   remove(/* data */) {
