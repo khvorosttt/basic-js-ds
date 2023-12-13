@@ -79,12 +79,41 @@ class BinarySearchTree {
     }
   }
 
-  remove(/* data */) {
+  remove(data) {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
 
+  removeNode(currentSubTree, data) {
+    if(currentSubTree === null) {
+      return null;
+    } else {
+      if(currentSubTree.data === data){
+        if(!currentSubTree.left && !currentSubTree.right) {
+          currentSubTree = null;
+          return currentSubTree;
+        } else if(!currentSubTree.left) {
+          currentSubTree = currentSubTree.right;
+        } else if(!currentSubTree.right) {
+          currentSubTree = currentSubTree.left;
+        } else {
+          // currentSubTree = 
+        }
+      } else {
+        if(data < currentSubTree.data){
+          return this.removeNode(currentSubTree.left, data);
+        } else {
+          return this.removeNode(currentSubTree.right, data);
+        }
+      }
+    }
+  }
+
   min() {
+    return this.minNode().data;
+  }
+
+  minNode() {
     if(!this._root){
       return null;
     }
@@ -92,10 +121,14 @@ class BinarySearchTree {
     while(currentNode.left) {
        currentNode = currentNode.left;
     }
-    return currentNode.data;
+    return currentNode;
   }
 
   max() {
+    return this.maxNode().data;
+  }
+
+  maxNode() {
     if(!this._root){
       return null;
     }
@@ -103,7 +136,7 @@ class BinarySearchTree {
     while(currentNode.right) {
        currentNode = currentNode.right;
     }
-    return currentNode.data;
+    return currentNode;
   }
 }
 
