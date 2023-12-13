@@ -97,7 +97,7 @@ class BinarySearchTree {
         } else if(!currentSubTree.right) {
           currentSubTree = currentSubTree.left;
         } else {
-          // currentSubTree = 
+          currentSubTree = this.minNode
         }
       } else {
         if(data < currentSubTree.data){
@@ -110,14 +110,14 @@ class BinarySearchTree {
   }
 
   min() {
-    return this.minNode().data;
+    return this.minNode(this._root).data;
   }
 
-  minNode() {
-    if(!this._root){
+  minNode(currentSubTree) {
+    if(!currentSubTree){
       return null;
     }
-    let currentNode = this._root;
+    let currentNode = currentSubTree;
     while(currentNode.left) {
        currentNode = currentNode.left;
     }
@@ -125,14 +125,14 @@ class BinarySearchTree {
   }
 
   max() {
-    return this.maxNode().data;
+    return this.maxNode(this._root).data;
   }
 
-  maxNode() {
-    if(!this._root){
+  maxNode(currentSubTree) {
+    if(!currentSubTree){
       return null;
     }
-    let currentNode = this._root;
+    let currentNode = currentSubTree;
     while(currentNode.right) {
        currentNode = currentNode.right;
     }
